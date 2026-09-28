@@ -1,0 +1,121 @@
+{
+  "info": {
+    "name": "BillableQA",
+    "description": "Local learning collection. Run login before protected requests; Postman retains the session cookie. Reuse submission_id for a retry (201 then 200); replace with a new UUID for a new intentional entry. Register is optional; use a unique email each time. These requests are not recorded test executions.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "new_email",
+      "value": "postman01@example.com"
+    },
+    {
+      "key": "submission_id",
+      "value": "00000000-0000-4000-8000-000000000001"
+    }
+  ],
+  "item": [
+    {
+      "name": "Register (use a fresh email)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{new_email}}\",\n  \"password\": \"Learn123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Log in as Alice",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"DemoPass123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Current employee",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/me"
+      }
+    },
+    {
+      "name": "Assigned projects",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/projects"
+      }
+    },
+    {
+      "name": "Save timesheet (reuse UUID to retry)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/timesheets",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": 1,\n  \"working_date\": \"2026-09-28\",\n  \"hours\": 2,\n  \"submission_id\": \"{{submission_id}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Timesheet history",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/timesheets"
+      }
+    },
+    {
+      "name": "Log out",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{base_url}}/api/logout"
+      }
+    }
+  ]
+}
