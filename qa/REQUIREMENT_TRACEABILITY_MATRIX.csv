@@ -1,13 +1,13 @@
 Requirement ID,Requirement,Manual Test IDs,Automation,Manual Status
-R01,Email and password are mandatory for login.,TC01;TC02;TC03;TC04,Pending automation phase,NOT RUN
-R02,Registration requires a valid and unique email.,TC05;TC06;TC07;TC09,Pending automation phase,NOT RUN
-R03,Password must contain at least 8 characters.,TC05;TC08;TC09;TC10,Pending automation phase,NOT RUN
-R04,Only authenticated employees can access their timesheets.,TC11;TC12,Pending automation phase,NOT RUN
-R05,Employees can select only projects assigned to them.,TC13;TC14,Pending automation phase,NOT RUN
-R06,Project selection and working date are mandatory.,TC15;TC16,Pending automation phase,NOT RUN
-R07,Working hours must be an integer between 1 and 12 inclusive.,TC17;TC18;TC19;TC20;TC21,Pending automation phase,NOT RUN
-R08,Invalid timesheet submissions must not create database records.,TC14;TC15;TC16;TC17;TC20;TC21;TC22,Pending automation phase,NOT RUN
-R09,One intentional submission must create exactly one record. Rapid double-clicking must not create unintended duplicates.,TC18;TC19;TC23,Pending automation phase,NOT RUN
-R10,Billable amount = working hours × project hourly rate.,TC18;TC19;TC25,Pending automation phase,NOT RUN
-R11,Employees must only view their own timesheet records.,TC24,Pending automation phase,NOT RUN
-R12,Valid records must persist after a page refresh.,TC25,Pending automation phase,NOT RUN
+R01,Email and password are mandatory for login.,TC01;TC02;TC03;TC04,test_login_required; test_wrong_password; browser: test_login_and_logout,NOT RUN
+R02,Registration requires a valid and unique email.,TC05;TC06;TC07;TC09,test_registration_valid; test_registration_invalid; test_registration_duplicate,NOT RUN
+R03,Password must contain at least 8 characters.,TC05;TC08;TC09;TC10,test_registration_valid; test_registration_invalid,NOT RUN
+R04,Only authenticated employees can access their timesheets.,TC11;TC12,test_authentication_required; test_logout_revokes_session; test_session_expiry; browser: test_login_and_logout,NOT RUN
+R05,Employees can select only projects assigned to them.,TC13;TC14,test_project_authorization; test_history_isolation,NOT RUN
+R06,Project selection and working date are mandatory.,TC15;TC16,test_missing_fields; test_invalid_fields,NOT RUN
+R07,Working hours must be an integer between 1 and 12 inclusive.,TC17;TC18;TC19;TC20;TC21,test_invalid_hours; test_calculation_and_single_record,NOT RUN
+R08,Invalid timesheet submissions must not create database records.,TC14;TC15;TC16;TC17;TC20;TC21;TC22,test_invalid_hours; test_invalid_fields; test_missing_fields; test_project_authorization,NOT RUN
+R09,One intentional submission must create exactly one record. Rapid double-clicking must not create unintended duplicates.,TC18;TC19;TC23,test_calculation_and_single_record; test_retry_is_idempotent; test_concurrent_retry; test_separate_intentions_allowed; browser: test_rapid_double_click,NOT RUN
+R10,Billable amount = working hours × project hourly rate.,TC18;TC19;TC25,test_calculation_and_single_record; browser: test_save_calculate_and_refresh,NOT RUN
+R11,Employees must only view their own timesheet records.,TC24,test_history_isolation,NOT RUN
+R12,Valid records must persist after a page refresh.,TC25,test_persistence_after_restart; browser: test_save_calculate_and_refresh,NOT RUN
