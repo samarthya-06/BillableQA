@@ -4,6 +4,13 @@ A small, local employee timesheet app for learning software testing before a cam
 
 This is an AI-assisted learning project. Use it to practice executing tests, reading code and explaining observed behavior. Do not present generated code or unexecuted manual cases as independent professional experience.
 
+<img width="1440" height="859" alt="image" src="https://github.com/user-attachments/assets/11a925c9-feaa-4b4d-99ac-2a2005c128db" />
+
+<img width="1440" height="820" alt="image" src="https://github.com/user-attachments/assets/9db74c68-7aab-4735-962e-48ecfa43ddf4" />
+
+
+
+
 ## 1. Install and launch
 
 Install Python 3.11 or newer. Open a terminal **inside the BillableQA folder** (the folder containing this README).
